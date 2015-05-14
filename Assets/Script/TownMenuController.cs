@@ -6,10 +6,6 @@ public class TownMenuController : MonoBehaviour {
 	public GameObject Skill;
 	public GameObject Equip;
 
-	void Start(){
-		Skill.SetActive (true);
-	}
-
 	public void ShowSkillTap(){
 		Skill.SetActive (true);
 		Equip.SetActive (false);
