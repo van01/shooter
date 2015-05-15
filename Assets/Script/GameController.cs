@@ -13,11 +13,12 @@ public class GameController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Awake() {
-		this.gameObject.SendMessage ("GameStateControll", "Battle");
-
 		tmpStartPosition = startPosition.transform;
 		MakePlayer();
+	}
 
+	void Start(){
+		gameObject.SendMessage ("GameStateControll", "Appear");
 	}
 
 	void MakePlayer(){

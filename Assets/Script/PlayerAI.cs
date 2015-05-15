@@ -12,8 +12,6 @@ public class PlayerAI : MonoBehaviour {
 		print (mparams.Name);
 		print (mparams.attack);
 		print (mparams.maxHP);
-
-		target = GameObject.FindGameObjectWithTag("Enemy");
 	}
 
 	public void SearchEnemy(){

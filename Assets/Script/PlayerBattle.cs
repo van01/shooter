@@ -2,12 +2,18 @@
 using System.Collections;
 
 public class PlayerBattle : CharacterBattle {
-
+	
 	GameObject target;
+	GameObject tmpGameController;
+
+	void Start(){
+		tmpGameController = GameObject.Find("GameController");
+	}
 
 	public override void StartBattle(){
 		myState = GetComponent<PlayerState>();
 
+		SendMessage("SearchEnemy");
 		target = GetComponent<PlayerAI>().GetCurrentTarget();
 
 		myParams = GetComponent<PlayerAbility>().GetParams();
@@ -24,7 +30,14 @@ public class PlayerBattle : CharacterBattle {
 
 	protected void SuccessRoll(){
 		int myAttack = myParams.attack;
-		print (myAttack);
 		enemyParams.curHP -= myAttack;
+		CheckEnemyCurHP();
+	}
+
+	protected void CheckEnemyCurHP(){
+		if (enemyParams.curHP > 0)
+			return;
+		else
+			tmpGameController.SendMessage("GameStateControll", "BattleEnd");
 	}
 }

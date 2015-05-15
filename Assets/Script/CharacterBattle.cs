@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CharacterBattle : MonoBehaviour {
 
-	protected float attackDelay = 2.0f;
+	protected float attackDelay = 0f;
 
 	protected CharacterParams myParams;
 	protected CharacterParams enemyParams;
@@ -15,7 +15,7 @@ public class CharacterBattle : MonoBehaviour {
 	}
 
 	protected IEnumerator BattleBegins(){
-		while (myState.currentState == CharacterState.State.Attack){
+		if (myState.currentState == CharacterState.State.Attack){
 			DoBattle();
 
 			yield return new WaitForSeconds(attackDelay);
