@@ -19,7 +19,7 @@ public class StageController : MonoBehaviour {
 
 			print (nPresentStage + " - " + nPresentBattle);
 		} else if (nMBattle == nPresentBattle) {
-				SendMessage ("GameStateControll", "BossBattle");
+				SendMessage("BossBattleOn");
 
 				nPresentBattle++;
 				SendMessage("GetPresentBattle", nPresentBattle);

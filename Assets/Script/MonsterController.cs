@@ -29,12 +29,10 @@ public class MonsterController : MonoBehaviour {
 	}
 
 	public void BossMonsterMaker(){
-		/*
 		RandomMonster();
 		RandomMonsterHandler();
 		MakeMonster();
 		print("Boss Monster Make!!!! No: " + rPresentMonNumber);
-		*/
 	}
 
 	public void MonsterDestroyer(){
