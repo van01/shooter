@@ -8,10 +8,6 @@ public class PlayerAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		PlayerParams mparams = new PlayerParams();
-
-		print (mparams.Name);
-		print (mparams.attack);
-		print (mparams.maxHP);
 	}
 
 	public void SearchEnemy(){

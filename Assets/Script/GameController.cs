@@ -6,15 +6,19 @@ public class GameController : MonoBehaviour {
 	public GameObject playerPrefab;
 	public GameObject startPosition;
 
-	Transform tmpStartPosition;
+	private Transform tmpStartPosition;
 
-	GameObject player;
+	private GameObject player;
 
+	public int presentStage = 0;
+	public int presentBattle = 0;
+	public int maxBattle = 10;
 	
 	// Use this for initialization
 	void Awake() {
 		tmpStartPosition = startPosition.transform;
 		MakePlayer();
+		StageSetting ();
 	}
 
 	void Start(){
@@ -29,5 +33,18 @@ public class GameController : MonoBehaviour {
 		player.SendMessage("CharacterStateControll", "Attack");
 	}
 
+	public void StageSetting(){
+		gameObject.SendMessage ("SetPresentStage", presentStage);
+		gameObject.SendMessage ("SetPresentBattle", presentBattle);
+		gameObject.SendMessage ("StageHandler", maxBattle);
+	}
+
+	public void GetPresentStage(int nPStage){
+		presentStage = nPStage;
+	}
+
+	public void GetPresentBattle(int nPBattle){
+		presentBattle = nPBattle;
+	}
 
 }

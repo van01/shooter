@@ -36,6 +36,7 @@ public class GameStateController : MonoBehaviour {
 			break;
 
 		case GameState.BossBattle:
+			BossBattleAction();
 			print ("Boss Battle Start");
 			break;
 
@@ -49,17 +50,24 @@ public class GameStateController : MonoBehaviour {
 			break;
 		}
 	}
+
 	public void StateBattle(){
 		GameStateControll ("Battle");
 	}
+
 	public void StateBossBattle(){
 		GameStateControll ("BossBattle");
 	}
 
 
 	void AppearAction(){
-
-		GameStateControll ("Battle");
+		if (state == GameState.BossBattle) {
+			print (state);
+		}
+		else {
+			print (state);
+			//GameStateControll ("Battle");
+		}
 	}
 
 	void BattleAction(){
@@ -67,7 +75,13 @@ public class GameStateController : MonoBehaviour {
 	}
 
 	void BattleEndAction(){
+		SendMessage ("StageSetting");
 		SendMessage("MonsterDestroyer");
-		GameStateControll("Appear");
+
+		GameStateControll ("Appear");
+	}
+
+	void BossBattleAction(){
+		SendMessage("BossMonsterMaker");
 	}
 }

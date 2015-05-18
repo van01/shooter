@@ -20,7 +20,6 @@ public class InputHandler : MonoBehaviour {
 	void HitZoneInput(){
 		if (scrInputActive == true){
 			this.SendMessage("PlayerAttack");
-			print ("Clicked");
 		}
 	}
 }

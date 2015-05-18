@@ -26,7 +26,15 @@ public class MonsterController : MonoBehaviour {
 		RandomMonster();
 		RandomMonsterHandler();
 		MakeMonster();
-		print("Monster Make!!!! No: " + rPresentMonNumber);
+	}
+
+	public void BossMonsterMaker(){
+		/*
+		RandomMonster();
+		RandomMonsterHandler();
+		MakeMonster();
+		print("Boss Monster Make!!!! No: " + rPresentMonNumber);
+		*/
 	}
 
 	public void MonsterDestroyer(){

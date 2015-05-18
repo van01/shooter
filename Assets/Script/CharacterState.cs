@@ -65,10 +65,7 @@ public class CharacterState : MonoBehaviour {
 	}
 
 	public virtual void AttackAction(){
-		//SendMessage("ChangeAni", CharacterAni.ATTACK);
 		SendMessage("StartBattle");
-		print("Attack");
-		//CharacterStateControll("Idle");
 	}
 
 	public virtual void DeadAction(){
