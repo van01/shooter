@@ -3,9 +3,6 @@ using System.Collections;
 
 public class MonsterController : MonoBehaviour {
 
-	GameObject presentMonster;
-
-	GameObject MonsterPrefab;
 	public GameObject monsterPosition;
 
 	public GameObject testPresentMonster1;
@@ -15,6 +12,9 @@ public class MonsterController : MonoBehaviour {
 	public GameObject testPresentMonster5;
 
 	private int rPresentMonNumber = 0;
+
+	private GameObject presentMonster;
+	private GameObject MonsterPrefab;
 
 	Transform tmpMonsterPostion;
 
@@ -26,16 +26,18 @@ public class MonsterController : MonoBehaviour {
 		RandomMonster();
 		RandomMonsterHandler();
 		MakeMonster();
+		presentMonster.SendMessage("MonsterTypeSetting", "normal");
 	}
 
 	public void BossMonsterMaker(){
 		RandomMonster();
 		RandomMonsterHandler();
 		MakeMonster();
-		print("Boss Monster Make!!!! No: " + rPresentMonNumber);
+		presentMonster.SendMessage("MonsterTypeSetting", "boss");
 	}
 
 	public void MonsterDestroyer(){
+		presentMonster.SendMessage("MonsterDie");
 		GameObject.Destroy(presentMonster);
 	}
 
@@ -58,6 +60,8 @@ public class MonsterController : MonoBehaviour {
 
 	void MakeMonster(){
 		presentMonster = Instantiate(MonsterPrefab, tmpMonsterPostion.position, tmpMonsterPostion.rotation) as GameObject;
+		presentMonster.SendMessage("StartBattle");
+
 	}
 	
 }

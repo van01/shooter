@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerBattle : CharacterBattle {
 	
-	GameObject target;
-	GameObject tmpGameController;
+	public GameObject target;
+	private GameObject tmpGameController;
 
 	void Start(){
 		tmpGameController = GameObject.Find("GameController");
@@ -31,6 +31,8 @@ public class PlayerBattle : CharacterBattle {
 	protected void SuccessRoll(){
 		int myAttack = myParams.attack;
 		enemyParams.curHP -= myAttack;
+		tmpGameController.SendMessage("SendHudMonsterHitDamage",myAttack);
+
 		CheckEnemyCurHP();
 	}
 

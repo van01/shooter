@@ -78,9 +78,8 @@ public class GameStateController : MonoBehaviour {
 		if (bBossBattle == true){
 			BossBattleOff();
 		}
-
-		SendMessage ("StageSetting");
 		SendMessage("MonsterDestroyer");
+		SendMessage ("StageSetting");
 		GameStateControll ("Appear");
 	}
 
