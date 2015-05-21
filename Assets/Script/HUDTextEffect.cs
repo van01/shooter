@@ -5,6 +5,7 @@ using System.Collections;
 public class HUDTextEffect : MonoBehaviour {
 
 	public float ScoreDelay = 0.5f;
+
 	private Vector3 pos;
 	private RectTransform rectTransform;
 	private Rect rect;
@@ -23,14 +24,11 @@ public class HUDTextEffect : MonoBehaviour {
 		rectTransform.localPosition = pos;
 	}
 
-	IEnumerator DisplayScore()
-	{
+	IEnumerator DisplayScore(){
 		yield return new WaitForSeconds(ScoreDelay);
 		
-		for(float a = 1; a >= 0; a -= 0.05f)
-		{
+		for(float a = 1; a >= 0; a -= 0.05f){
 			GetComponent<Text>().color = new Vector4(0, 0, 0, a);
-
 			yield return new WaitForFixedUpdate();
 		}
 		

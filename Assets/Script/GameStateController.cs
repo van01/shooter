@@ -68,6 +68,7 @@ public class GameStateController : MonoBehaviour {
 		if (bBossBattle == false) {
 			GameStateControll ("Battle");
 		}
+		SendMessage("UpdateHealthBar", 1f);
 	}
 
 	void BattleAction(){

@@ -5,11 +5,7 @@ public class StageController : MonoBehaviour {
 
 	private int nPresentStage;
 	private int nPresentBattle;
-
-	void Start () {
-	
-	}
-	
+		
 	public void StageHandler(int nMBattle){
 		if(nMBattle < nPresentBattle){
 			nPresentStage++;
@@ -17,19 +13,22 @@ public class StageController : MonoBehaviour {
 			nPresentBattle = 1;
 			SendMessage("GetPresentBattle", nPresentBattle);
 
-			print (nPresentStage + " - " + nPresentBattle);
+			SendMessage("UpdateStageInfo", nPresentStage);
+			SendMessage("UpdateBattleInfo", nPresentBattle);
 		} else if (nMBattle == nPresentBattle) {
-				SendMessage("BossBattleOn");
+			SendMessage("BossBattleOn");
 
-				nPresentBattle++;
-				SendMessage("GetPresentBattle", nPresentBattle);
+			nPresentBattle++;
+			SendMessage("GetPresentBattle", nPresentBattle);
 				
-				print (nPresentStage + " Stage Boss Battle");
+			SendMessage("UpdateStageInfo", nPresentStage);
+			SendMessage("UpdateBattleInfo", nPresentBattle);
 		} else {
 			nPresentBattle++;
 			SendMessage("GetPresentBattle", nPresentBattle);
 
-			print (nPresentStage + " - " + nPresentBattle);
+			SendMessage("UpdateStageInfo", nPresentStage);
+			SendMessage("UpdateBattleInfo", nPresentBattle);
 		}
 	}
 

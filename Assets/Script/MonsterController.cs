@@ -37,7 +37,7 @@ public class MonsterController : MonoBehaviour {
 	}
 
 	public void MonsterDestroyer(){
-		presentMonster.SendMessage("MonsterDie");
+		presentMonster.SendMessage("MonsterDie"); 
 		GameObject.Destroy(presentMonster);
 	}
 
@@ -61,7 +61,6 @@ public class MonsterController : MonoBehaviour {
 	void MakeMonster(){
 		presentMonster = Instantiate(MonsterPrefab, tmpMonsterPostion.position, tmpMonsterPostion.rotation) as GameObject;
 		presentMonster.SendMessage("StartBattle");
-
 	}
 	
 }

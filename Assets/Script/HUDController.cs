@@ -4,11 +4,13 @@ using System.Collections;
 
 public class HUDController : MonoBehaviour {
 	public GameObject HUD;
-
 	public GameObject townMenu;
-
 	public GameObject playerInfoTxt;
-	public GameObject monsterInfoTxt;
+	public GameObject monsterNameTxt;
+	public GameObject monsterHPTxt;
+
+	public GameObject stageInfoTxt;
+	public GameObject BattleInfoTxt;
 
 	private GameObject monsterHitTxt;
 	public GameObject monsterHitTxtPrefab;
@@ -18,6 +20,8 @@ public class HUDController : MonoBehaviour {
 	private GameObject coinHitTxt;
 	public GameObject coinHitTxtPrefab;
 	private int nCoinValue;
+
+	public Scrollbar GUIMonsterHealthBar;
 
 	void Start(){
 		tmpMonsterHitTxtStart = monsterHitTxtStart.transform;
@@ -35,7 +39,8 @@ public class HUDController : MonoBehaviour {
 	}
 
 	public void UpdateMonsterInfo(MonsterParams pParams){
-		monsterInfoTxt.GetComponent<Text>().text = pParams.Name.ToString() + " / HP: " + pParams.curHP.ToString();
+		monsterNameTxt.GetComponent<Text>().text = pParams.Name.ToString();
+		monsterHPTxt.GetComponent<Text>().text = pParams.curHP.ToString();
 	}
 
 
@@ -53,5 +58,21 @@ public class HUDController : MonoBehaviour {
 
 	public void HUDCoinValueSetting(int nSettingCoinValue){
 		nCoinValue = nSettingCoinValue;
+	}
+
+	public void UpdateStageInfo(int nStageNumber){
+		stageInfoTxt.GetComponent<Text>().text = nStageNumber.ToString();
+	}
+
+	public void UpdateBattleInfo(int nBattleNumber){
+		int nMaxBattle = GetComponent<GameController>().maxBattle;
+		if (nMaxBattle >= nBattleNumber)
+			BattleInfoTxt.GetComponent<Text>().text = nBattleNumber.ToString() + "/" + nMaxBattle;
+		else
+			BattleInfoTxt.GetComponent<Text>().text = "Boss Battle";
+	}
+
+	public void UpdateHealthBar(float nEnemyCurHpPer){
+		GUIMonsterHealthBar.size = nEnemyCurHpPer;
 	}
 }
