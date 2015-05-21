@@ -4,6 +4,8 @@ using System.Collections;
 public class MonsterBattle : CharacterBattle {
 
 	public GameObject coinPrefab;
+	protected int coinValue;
+
 	private GameObject presentCoin;
 
 	private GameObject tmpGameController;
@@ -20,16 +22,20 @@ public class MonsterBattle : CharacterBattle {
 	public void MonsterDie(){
 		int nCoinCount = 0;
 		if (enemyParams.monsterType == "boss"){
-			nCoinCount = Random.Range(10,20);
+			nCoinCount = Random.Range(10,21);
 			for(int i=0;i<=nCoinCount;i++)
 			{
+				coinValue = enemyParams.moneyBonus / nCoinCount;
 				presentCoin = Instantiate(coinPrefab,tmpGameController.transform.position,tmpGameController.transform.rotation) as GameObject;
+				presentCoin.SendMessage ("CoinValueSetting", coinValue);
 			}
 		} else{
-			nCoinCount = Random.Range(3,5);
+			nCoinCount = Random.Range(3,6);
 			for(int i=0;i<=nCoinCount;i++)
 			{
+				coinValue = enemyParams.moneyBonus / nCoinCount;
 				presentCoin = Instantiate(coinPrefab,tmpGameController.transform.position,tmpGameController.transform.rotation) as GameObject;
+				presentCoin.SendMessage ("CoinValueSetting", coinValue);
 			}
 		}
 	}

@@ -17,6 +17,7 @@ public class HUDController : MonoBehaviour {
 
 	private GameObject coinHitTxt;
 	public GameObject coinHitTxtPrefab;
+	private int nCoinValue;
 
 	void Start(){
 		tmpMonsterHitTxtStart = monsterHitTxtStart.transform;
@@ -47,6 +48,10 @@ public class HUDController : MonoBehaviour {
 	public void CoinHitValue(Vector3 nMousePosition){
 		coinHitTxt = Instantiate(coinHitTxtPrefab, nMousePosition, gameObject.transform.rotation) as GameObject;
 		coinHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
-		coinHitTxt.GetComponent<Text>().text = "1112";
+		coinHitTxt.GetComponent<Text>().text = nCoinValue.ToString();
+	}
+
+	public void HUDCoinValueSetting(int nSettingCoinValue){
+		nCoinValue = nSettingCoinValue;
 	}
 }
