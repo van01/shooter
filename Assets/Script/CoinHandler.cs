@@ -5,7 +5,7 @@ using System.Collections;
 public class CoinHandler : MonoBehaviour {
 
 	private GameObject tmpGameController;
-	private int nCoinValue;
+	private decimal nCoinValue;
 
 	public float nCoinAutoGetDelay = 5.0f;
 
@@ -33,7 +33,7 @@ public class CoinHandler : MonoBehaviour {
 		}
 	}
 
-	public void CoinValueSetting(int nValue){
+	protected void CoinValueSetting(decimal nValue){
 		nCoinValue = nValue;
 	}
 
@@ -41,7 +41,7 @@ public class CoinHandler : MonoBehaviour {
 		yield return new WaitForSeconds(nCoinAutoGetDelay);
 		Vector3 pos = Camera.main.WorldToScreenPoint(this.transform.position);
 
-		tmpGameController.SendMessage("HUDCoinValueSetting", nCoinValue);
+		tmpGameController.SendMessage("HUDCoinValueSetting", nCoinValue);			
 		tmpGameController.SendMessage("CoinHitValue", pos);
 
 		Destroy(gameObject);

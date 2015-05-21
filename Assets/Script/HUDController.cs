@@ -5,7 +5,7 @@ using System.Collections;
 public class HUDController : MonoBehaviour {
 	public GameObject HUD;
 	public GameObject townMenu;
-	public GameObject playerInfoTxt;
+	public GameObject playerTapDamageTxt;
 	public GameObject monsterNameTxt;
 	public GameObject monsterHPTxt;
 
@@ -19,7 +19,8 @@ public class HUDController : MonoBehaviour {
 
 	private GameObject coinHitTxt;
 	public GameObject coinHitTxtPrefab;
-	private int nCoinValue;
+
+	private string nCoinValue;
 
 	public Scrollbar GUIMonsterHealthBar;
 
@@ -35,7 +36,7 @@ public class HUDController : MonoBehaviour {
 	}
 
 	public void UpdatePlayerInfo(PlayerParams pParams){
-		playerInfoTxt.GetComponent<Text>().text = pParams.Name.ToString() + " / Level: " + pParams.level.ToString();
+		playerTapDamageTxt.GetComponent<Text>().text = pParams.attack.ToString();
 	}
 
 	public void UpdateMonsterInfo(MonsterParams pParams){
@@ -44,20 +45,21 @@ public class HUDController : MonoBehaviour {
 	}
 
 
-	public void MonsterHitDamage(int nDamage){
+	public void MonsterHitDamage(decimal nDamage){
 		monsterHitTxt = Instantiate(monsterHitTxtPrefab, tmpMonsterHitTxtStart.position, tmpMonsterHitTxtStart.rotation) as GameObject;
 		monsterHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
-		monsterHitTxt.GetComponent<Text>().text = nDamage.ToString();
+
+		monsterHitTxt.GetComponent<Text>().text = nDamage.ToString();												//BigNumber Handler 적용 필요
 	}
 
 	public void CoinHitValue(Vector3 nMousePosition){
 		coinHitTxt = Instantiate(coinHitTxtPrefab, nMousePosition, gameObject.transform.rotation) as GameObject;
 		coinHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
-		coinHitTxt.GetComponent<Text>().text = nCoinValue.ToString();
+		coinHitTxt.GetComponent<Text>().text = nCoinValue;
 	}
 
-	public void HUDCoinValueSetting(int nSettingCoinValue){
-		nCoinValue = nSettingCoinValue;
+	public void HUDCoinValueSetting(decimal nSettingCoinValue){
+		nCoinValue = nSettingCoinValue.ToString ();																	//BigNumber Handler 적용 필요
 	}
 
 	public void UpdateStageInfo(int nStageNumber){

@@ -46,9 +46,4 @@ public class GameController : MonoBehaviour {
 	public void GetPresentBattle(int nPBattle){
 		presentBattle = nPBattle;
 	}
-
-	public void SendHudMonsterHitDamage(int nHitDamage){
-		gameObject.SendMessage("MonsterHitDamage",nHitDamage);
-	}
-
 }

@@ -4,9 +4,9 @@ using System.Collections;
 public class PlayerParams : CharacterParams {
 
 	public int level {get; set;}
-	public int money {get; set;}
+	public decimal money {get; set;}
 	public int cristal {get; set;}
-	public int honor {get; set;}
+	public decimal honor {get; set;}
 
 	public PlayerParams(){
 		this.Name = "unnamed player";

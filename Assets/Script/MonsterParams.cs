@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MonsterParams : CharacterParams {
 
-	public int moneyBonus {get; set;}
+	public decimal moneyBonus {get; set;}
 	public string monsterType {get; set;}
 
 	public MonsterParams(){

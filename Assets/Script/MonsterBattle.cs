@@ -7,7 +7,7 @@ public class MonsterBattle : CharacterBattle {
 	public float coinSpawnDelay = 0.1f;
 	public GameObject coinParent;
 
-	protected int coinValue;
+	protected decimal coinValue;
 
 	private GameObject presentCoin;
 
@@ -41,8 +41,6 @@ public class MonsterBattle : CharacterBattle {
 			{
 				//StartCoroutine("CoinSpawnHandler");
 				CoinSpawnHandler();
-				coinValue = enemyParams.moneyBonus / coinCount;
-				presentCoin.SendMessage ("CoinValueSetting", coinValue);
 			}
 		} else{
 			coinCount = Random.Range(3,6);
@@ -50,8 +48,6 @@ public class MonsterBattle : CharacterBattle {
 			{
 				//StartCoroutine("CoinSpawnHandler");
 				CoinSpawnHandler();
-				coinValue = enemyParams.moneyBonus / coinCount;
-				presentCoin.SendMessage ("CoinValueSetting", coinValue);
 			}
 		}
 	}
@@ -64,5 +60,11 @@ public class MonsterBattle : CharacterBattle {
 		presentCoin = Instantiate(coinPrefab,tmpGameController.transform.position,Quaternion.Euler(90,0,0)) as GameObject;
 		presentCoin.GetComponent<Rigidbody>().AddForce(new Vector3(rForceX,rForceY,rForceZ),ForceMode.Impulse);
 		presentCoin.transform.SetParent(coinParent.transform);
+
+		coinValue = enemyParams.moneyBonus / coinCount;
+
+		if (coinValue <= 1)
+			coinValue = 1;
+		presentCoin.SendMessage ("CoinValueSetting", coinValue);
 	}
 }

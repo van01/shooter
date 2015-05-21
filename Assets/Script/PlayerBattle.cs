@@ -29,11 +29,12 @@ public class PlayerBattle : CharacterBattle {
 	}
 
 	protected void SuccessRoll(){
-		int myAttack = myParams.attack;
+		decimal myAttack = myParams.attack;
 		enemyParams.curHP -= myAttack;
-		float curHPPer = (float)enemyParams.curHP/enemyParams.maxHP;
+		float curHPPer = (float)enemyParams.curHP/(float)enemyParams.maxHP;
 
-		tmpGameController.SendMessage("SendHudMonsterHitDamage",myAttack);
+		tmpGameController.SendMessage("MonsterHitDamage", myAttack);
+
 		tmpGameController.SendMessage("UpdateHealthBar", curHPPer);
 
 		CheckEnemyCurHP();
