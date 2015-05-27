@@ -29,11 +29,28 @@ public class PlayerBattle : CharacterBattle {
 	}
 
 	protected void SuccessRoll(){
-		decimal myAttack = myParams.attack;
-		enemyParams.curHP -= myAttack;
-		float curHPPer = (float)enemyParams.curHP/(float)enemyParams.maxHP;
+		int criPer;
+		decimal myAttack;
 
-		tmpGameController.SendMessage("MonsterHitDamage", myAttack);
+		// 상대편이 보스일 경우 bossAddDamage
+		if (enemyParams.monsterType == "boss")
+			myAttack = myParams.attack * (decimal)myParams.bossAddDamage;
+		else
+			myAttack = myParams.attack;
+
+		// 크리티컬 확률 계산 및 크리티컬 데미지 계산
+		criPer = Random.Range(0,101);
+		if(criPer <= myParams.cristalPer){
+			myAttack = myAttack * (decimal)myParams.cristalDamage;
+			tmpGameController.SendMessage("MonsterHitCriticalDamage", myAttack);
+		}else{
+			tmpGameController.SendMessage("MonsterHitDamage", myAttack);
+		}
+
+		//적 HP 감소
+		enemyParams.curHP -= myAttack;
+
+		float curHPPer = (float)enemyParams.curHP/(float)enemyParams.maxHP;
 
 		tmpGameController.SendMessage("UpdateHealthBar", curHPPer);
 

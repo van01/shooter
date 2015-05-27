@@ -11,8 +11,8 @@ public class MonsterParams : CharacterParams {
 		this.id = 0;
 		this.monsterType = "none";
 		this.attack = 3;
-		this.maxHP = 50;
+		this.maxHP = 10000000000000000000000000000m;
 		this.curHP = this.maxHP;
-		this.moneyBonus = 10;
+		this.moneyBonus = 100000;
 	}
 }

@@ -18,6 +18,7 @@ public class PlayerAbility : MonoBehaviour {
 	void Start(){
 		tmpHudController = GameObject.Find("GameController").GetComponent<HUDController>();
 	}
+
 	void Update(){
 		tmpHudController.UpdatePlayerInfo(myParams);
 	}

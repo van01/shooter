@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+
 public class BigNumber{
     public decimal num;
 	public int suffixIdx;

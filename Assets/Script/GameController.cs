@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour {
 		gameObject.SendMessage ("SetPresentStage", presentStage);
 		gameObject.SendMessage ("SetPresentBattle", presentBattle);
 		gameObject.SendMessage ("StageHandler", maxBattle);
+
 	}
 
 	public void GetPresentStage(int nPStage){

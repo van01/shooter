@@ -24,8 +24,11 @@ public class HUDController : MonoBehaviour {
 
 	public Scrollbar GUIMonsterHealthBar;
 
+	protected BigNumberController myNumber;
+
 	void Start(){
 		tmpMonsterHitTxtStart = monsterHitTxtStart.transform;
+		myNumber = GetComponent<BigNumberController>();
 	}
 
 	public void ShowTownMenu(){
@@ -36,12 +39,12 @@ public class HUDController : MonoBehaviour {
 	}
 
 	public void UpdatePlayerInfo(PlayerParams pParams){
-		playerTapDamageTxt.GetComponent<Text>().text = pParams.attack.ToString();
+		playerTapDamageTxt.GetComponent<Text>().text = myNumber.ExportNumber(pParams.attack);//BigNumber Handler 적용 필요
 	}
 
 	public void UpdateMonsterInfo(MonsterParams pParams){
 		monsterNameTxt.GetComponent<Text>().text = pParams.Name.ToString();
-		monsterHPTxt.GetComponent<Text>().text = pParams.curHP.ToString();
+		monsterHPTxt.GetComponent<Text>().text = myNumber.ExportNumber(pParams.curHP);//BigNumber Handler 적용 필요
 	}
 
 
@@ -49,7 +52,15 @@ public class HUDController : MonoBehaviour {
 		monsterHitTxt = Instantiate(monsterHitTxtPrefab, tmpMonsterHitTxtStart.position, tmpMonsterHitTxtStart.rotation) as GameObject;
 		monsterHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
 
-		monsterHitTxt.GetComponent<Text>().text = nDamage.ToString();												//BigNumber Handler 적용 필요
+		monsterHitTxt.GetComponent<Text>().text = myNumber.ExportNumber(nDamage);
+	}
+
+	public void MonsterHitCriticalDamage(decimal nDamage){
+		monsterHitTxt = Instantiate(monsterHitTxtPrefab, tmpMonsterHitTxtStart.position, tmpMonsterHitTxtStart.rotation) as GameObject;
+		monsterHitTxt.GetComponent<RectTransform>().localScale = new Vector3 (1.5f, 1.5f, 1f);
+		monsterHitTxt.GetComponent<RectTransform>().SetParent(HUD.transform);
+		
+		monsterHitTxt.GetComponent<Text>().text = myNumber.ExportNumber(nDamage);
 	}
 
 	public void CoinHitValue(Vector3 nMousePosition){
@@ -59,7 +70,7 @@ public class HUDController : MonoBehaviour {
 	}
 
 	public void HUDCoinValueSetting(decimal nSettingCoinValue){
-		nCoinValue = nSettingCoinValue.ToString ();																	//BigNumber Handler 적용 필요
+		nCoinValue = myNumber.ExportNumber(nSettingCoinValue);
 	}
 
 	public void UpdateStageInfo(int nStageNumber){

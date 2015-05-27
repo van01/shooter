@@ -3,12 +3,22 @@ using System.Collections;
 
 public class StageController : MonoBehaviour {
 
+	public GameObject StartStagePositionGameObject;
+
 	private int nPresentStage;
 	private int nPresentBattle;
 		
 	public void StageHandler(int nMBattle){
+		if(nPresentStage == 1){
+			if(nPresentBattle == 0)
+				SendMessage ("InitializeStageDraw", StartStagePositionGameObject.transform);
+		}
+
 		if(nMBattle < nPresentBattle){
 			nPresentStage++;
+
+			SendMessage ("StageDraw", nPresentStage);
+
 			SendMessage("GetPresentStage", nPresentStage);
 			nPresentBattle = 1;
 			SendMessage("GetPresentBattle", nPresentBattle);
