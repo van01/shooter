@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerParams : CharacterParams {
 
-	public int level {get; set;}
 	public decimal money {get; set;}
 	public int cristalPer {get; set;}
 	public float cristalDamage {get; set;}
